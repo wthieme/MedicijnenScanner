@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Medicijnen Scanner</string>
+    <string name="url">Url</string>
+    <string name="autorization">Autorisatie sleutel</string>
+    <string name="settings">Instellingen</string>
+    <string name="NoInternet">Geen internet connectie</string>
+    <string name="fa_bolt">&#xf0e7;</string>
+    <string name="fa_circle">&#xf111;</string>
 </resources>

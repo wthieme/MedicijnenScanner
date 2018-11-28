@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory android:title="Instellingen">
+        <EditTextPreference
+            android:key="Url"
+            android:title="@string/url" />
+        <EditTextPreference
+            android:key="Autorization"
+            android:title="@string/autorization" />
+    </PreferenceCategory>
+</PreferenceScreen>
+
