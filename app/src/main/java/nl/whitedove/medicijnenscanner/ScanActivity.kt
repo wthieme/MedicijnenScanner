@@ -90,7 +90,7 @@ class ScanActivity : AppCompatActivity(), ZXingScannerView.ResultHandler {
     private fun initScanner()
     {
         val qrCodeScanner = findViewById<ZXingScannerView>(R.id.qrCodeScanner)
-        qrCodeScanner.setFormats(listOf(BarcodeFormat.QR_CODE))
+        qrCodeScanner.setFormats(listOf(BarcodeFormat.DATA_MATRIX))
         qrCodeScanner.setAutoFocus(true)
         qrCodeScanner.setLaserColor(R.color.colorAccent)
         qrCodeScanner.setMaskColor(R.color.colorAccent)
