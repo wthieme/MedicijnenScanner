@@ -4,6 +4,12 @@
     <string name="autorization">Autorisatie sleutel</string>
     <string name="settings">Instellingen</string>
     <string name="NoInternet">Geen internet connectie</string>
+    <string name="PackNr">Pack #</string>
+    <string name="ProductCode">Productcode</string>
+    <string name="BatchId">Batch Id</string>
+    <string name="Expiration">Expiration</string>
+    <string name="Result">Result</string>
     <string name="fa_bolt">&#xf0e7;</string>
     <string name="fa_circle">&#xf111;</string>
+    <string name="camerapermissie">Camera permissie nodig</string>
 </resources>

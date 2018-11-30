@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackground"
+    android:id="@+id/rlRootScanView"
+    android:clipChildren="false"
+    android:keepScreenOn="true"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tvBolt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="10dp"
+        android:alpha="0"
+        android:padding="10sp"
+        android:text="@string/fa_bolt"
+        android:textAlignment="center"
+        android:textColor="@color/colorYellow"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/tvOnline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="10dp"
+        android:alpha="0"
+        android:padding="10sp"
+        android:text="@string/fa_circle"
+        android:textAlignment="center"
+        android:textColor="@color/colorRed"
+        android:textSize="16sp" />
+
+    <me.dm7.barcodescanner.zxing.ZXingScannerView
+        android:id="@+id/qrCodeScanner"
+        android:layout_below="@id/tvOnline"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </me.dm7.barcodescanner.zxing.ZXingScannerView>
+
+</RelativeLayout>

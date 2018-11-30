@@ -13,6 +13,7 @@ internal object Helper {
     var dFormat = DateTimeFormat.forPattern("dd-MM-yyyy").withLocale(Locale.getDefault())!!
     var dmFormat = DateTimeFormat.forPattern("dd-MM").withLocale(Locale.getDefault())!!
     var dtFormat = DateTimeFormat.forPattern("dd-MM-yyyy HH:mm").withLocale(Locale.getDefault())!!
+
     const val DEBUG = false
 
     fun l(log: String) {
