@@ -32,7 +32,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".ScanActivity" />
-        <activity android:name=".SetPreferenceActivity" />
+        <activity android:name=".PreferenceActivity"/>
     </application>
 
 </manifest>

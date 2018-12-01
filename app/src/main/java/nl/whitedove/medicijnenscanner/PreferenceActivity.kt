@@ -3,13 +3,15 @@ package nl.whitedove.medicijnenscanner
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 
-class SetPreferenceActivity : AppCompatActivity() {
+class PreferenceActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        setContentView(R.layout.preferences_layout)
+
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.content, PrefsFragment())
+                .replace(R.id.llRootPreference, PrefsFragment())
                 .commit()
 
     }

@@ -2,45 +2,49 @@ package nl.whitedove.medicijnenscanner
 
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.preference.PreferenceManager
-import android.support.v7.preference.ListPreference
+import android.support.v7.preference.EditTextPreference
+import android.support.v7.preference.Preference
 import android.support.v7.preference.PreferenceFragmentCompat
+import android.support.v7.preference.PreferenceGroup
+import android.support.v7.widget.RecyclerView
+import android.view.ViewGroup
+import android.view.LayoutInflater
+import android.view.View
+import android.widget.FrameLayout
+import android.view.ViewGroup.MarginLayoutParams
+
 
 class PrefsFragment : PreferenceFragmentCompat(), SharedPreferences.OnSharedPreferenceChangeListener {
-
-    override fun onCreatePreferences(bundle: Bundle, s: String) {
-        //add xml
+    override fun onCreatePreferences(savedInstanceState: Bundle?, p1: String?) {
+        // Load the preferences from an XML resource
         addPreferencesFromResource(R.xml.preferences)
-
-        val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(activity)
-
-        onSharedPreferenceChanged(sharedPreferences, getString(R.string.settings))
+        preferenceScreen.sharedPreferences.registerOnSharedPreferenceChangeListener(this)
     }
 
     override fun onResume() {
         super.onResume()
-        //unregister the preferenceChange listener
-        preferenceScreen.sharedPreferences
-                .registerOnSharedPreferenceChangeListener(this)
-    }
-
-    override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences, key: String) {
-        val preference = findPreference(key)
-        if (preference is ListPreference) {
-            val prefIndex = preference.findIndexOfValue(sharedPreferences.getString(key, ""))
-            if (prefIndex >= 0) {
-                preference.setSummary(preference.entries[prefIndex])
+        for (i in 0 until preferenceScreen.preferenceCount) {
+            val preference = preferenceScreen.getPreference(i)
+            if (preference is PreferenceGroup) {
+                for (j in 0 until preference.preferenceCount) {
+                    updatePreference(preference.getPreference(j))
+                }
+            } else {
+                updatePreference(preference)
             }
-        } else {
-            preference.summary = sharedPreferences.getString(key, "")
-
         }
     }
 
-    override fun onPause() {
-        super.onPause()
-        //unregister the preference change listener
-        preferenceScreen.sharedPreferences
-                .unregisterOnSharedPreferenceChangeListener(this)
+
+    private fun updatePreference(preference: Preference) {
+        if (preference is EditTextPreference) {
+            preference.setSummary(preference.text)
+        } else if (preference is android.preference.ListPreference) {
+            preference.setSummary(preference.entry)
+        }
+    }
+
+    override fun onSharedPreferenceChanged(sharedPreferences: SharedPreferences, key: String) {
+        updatePreference(findPreference(key))
     }
 }
