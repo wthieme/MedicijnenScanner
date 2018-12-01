@@ -16,6 +16,8 @@ import android.widget.Toast
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.Result
 import me.dm7.barcodescanner.zxing.ZXingScannerView
+import android.content.Intent
+
 
 class ScanActivity : AppCompatActivity(), ZXingScannerView.ResultHandler {
 
@@ -23,6 +25,7 @@ class ScanActivity : AppCompatActivity(), ZXingScannerView.ResultHandler {
         private const val HUAWEI = "huawei"
         private const val MY_CAMERA_REQUEST_CODE = 6515
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_scan)
@@ -43,7 +46,7 @@ class ScanActivity : AppCompatActivity(), ZXingScannerView.ResultHandler {
 
     override fun handleResult(p0: Result?) {
         if (p0 != null) {
-            Toast.makeText(this,p0.text, Toast.LENGTH_LONG).show()
+            backtoMain(p0.text)
         }
     }
 
@@ -53,7 +56,7 @@ class ScanActivity : AppCompatActivity(), ZXingScannerView.ResultHandler {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED)
                 openCamera()
             else if (grantResults[0] == PackageManager.PERMISSION_DENIED)
-                showCameraSnackBar()
+                backtoMain("Scannen niet mogelijk zonder toestemming")
         }
     }
 
@@ -69,16 +72,11 @@ class ScanActivity : AppCompatActivity(), ZXingScannerView.ResultHandler {
         } else super.onOptionsItemSelected(item)
     }
 
-    private fun showCameraSnackBar() {
-        if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.CAMERA)) {
-            val rlRootScanView = findViewById<RelativeLayout>(R.id.rlRootScanView)
-            val snackbar = Snackbar.make(rlRootScanView, resources.getString(R.string.camerapermissie), Snackbar.LENGTH_LONG)
-            val view1 = snackbar.view
-            view1.setBackgroundColor(ContextCompat.getColor(this, R.color.colorWhite))
-            val textView = view1.findViewById<TextView>(android.support.design.R.id.snackbar_text)
-            textView.setTextColor(ContextCompat.getColor(this, R.color.colorPrimary))
-            snackbar.show()
-        }
+    private fun backtoMain(result: String) {
+        Helper.scanResult = result
+        val intent = Intent(this, MainActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
+        this.startActivity(intent)
     }
 
     private fun openCamera() {
@@ -87,8 +85,7 @@ class ScanActivity : AppCompatActivity(), ZXingScannerView.ResultHandler {
         qrCodeScanner.setResultHandler(this)
     }
 
-    private fun initScanner()
-    {
+    private fun initScanner() {
         val qrCodeScanner = findViewById<ZXingScannerView>(R.id.qrCodeScanner)
         qrCodeScanner.setFormats(listOf(BarcodeFormat.DATA_MATRIX))
         qrCodeScanner.setAutoFocus(true)

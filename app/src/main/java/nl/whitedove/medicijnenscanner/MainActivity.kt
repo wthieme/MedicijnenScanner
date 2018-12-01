@@ -6,6 +6,7 @@ import android.support.design.widget.FloatingActionButton
 import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.TextView
 
 class MainActivity : AppCompatActivity() {
 
@@ -13,6 +14,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         initFab()
+        toonScanResult()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -37,6 +39,12 @@ class MainActivity : AppCompatActivity() {
 
     private fun openScanner() {
         val intent = Intent(this, ScanActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
         startActivity(intent)
+    }
+
+    private fun toonScanResult() {
+        val tvResult = findViewById<TextView>(R.id.tvResult)
+        tvResult.setText(Helper.scanResult)
     }
 }
