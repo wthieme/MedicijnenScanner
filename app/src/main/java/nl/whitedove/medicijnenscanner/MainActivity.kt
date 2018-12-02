@@ -17,6 +17,11 @@ class MainActivity : AppCompatActivity() {
         toonScanResult()
     }
 
+    override fun onResume() {
+        super.onResume()
+        toonScanResult()
+    }
+    
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.cmenu, menu)
         return true

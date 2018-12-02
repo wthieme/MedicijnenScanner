@@ -5,14 +5,9 @@ import android.content.pm.PackageManager
 import android.os.Build
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.support.design.widget.Snackbar
 import android.support.v4.app.ActivityCompat
-import android.support.v4.content.ContextCompat
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.RelativeLayout
-import android.widget.TextView
-import android.widget.Toast
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.Result
 import me.dm7.barcodescanner.zxing.ZXingScannerView
@@ -56,7 +51,7 @@ class ScanActivity : AppCompatActivity(), ZXingScannerView.ResultHandler {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED)
                 openCamera()
             else if (grantResults[0] == PackageManager.PERMISSION_DENIED)
-                backtoMain("Scannen niet mogelijk zonder toestemming")
+                backtoMain(getString(R.string.nopermission))
         }
     }
 
@@ -83,6 +78,7 @@ class ScanActivity : AppCompatActivity(), ZXingScannerView.ResultHandler {
         val qrCodeScanner = findViewById<ZXingScannerView>(R.id.qrCodeScanner)
         qrCodeScanner.startCamera()
         qrCodeScanner.setResultHandler(this)
+        Helper.scanResult =getString(R.string.geenscan)
     }
 
     private fun initScanner() {

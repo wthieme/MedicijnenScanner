@@ -12,4 +12,6 @@
     <string name="fa_bolt">&#xf0e7;</string>
     <string name="fa_circle">&#xf111;</string>
     <string name="camerapermissie">Camera permissie nodig</string>
+    <string name="geenscan">Geen scanresultaat</string>
+    <string name="nopermission">Scannen niet mogelijk zonder toestemming</string>
 </resources>
