@@ -23,7 +23,7 @@ object NmvsHelper {
         val request = Request.Builder()
                 .addHeader("Cache-Control", "no-cache")
                 .addHeader("X-Authorization", auth)
-                .url(url)
+                .url(url+"NmvsState")
                 .post(formBody)
                 .build()
 

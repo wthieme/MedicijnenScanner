@@ -13,9 +13,11 @@
     <color name="colorIcon">#303f9f</color>
     <color name="colorDisabled"> #B4B4B4</color>
     <color name="colorRed">#ff3b30</color>
+    <color name="colorLightRed">#ff8780</color>
     <color name="colorOrange">#ff9500</color>
     <color name="colorYellow">#ffcc00</color>
     <color name="colorGreen">#4cd864</color>
+    <color name="colorLightGreen">#90ffa3</color>
     <color name="colorTeal">#5ac8fa</color>
     <color name="colorBlue">#007aff</color>
     <color name="colorPurple">#5856d6</color>

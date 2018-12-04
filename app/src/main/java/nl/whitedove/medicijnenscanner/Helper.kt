@@ -1,10 +1,14 @@
 package nl.whitedove.medicijnenscanner
 
+import android.animation.Animator
+import android.animation.AnimatorListenerAdapter
 import android.content.Context
 import android.net.ConnectivityManager
+import android.preference.PreferenceManager
 import android.support.v4.content.ContextCompat
 import android.widget.TextView
 import android.widget.Toast
+import org.joda.time.DateTime
 import org.joda.time.format.DateTimeFormat
 import java.util.*
 
@@ -55,5 +59,28 @@ internal object Helper {
         val text = toast.view.findViewById(android.R.id.message) as TextView
         text.setTextColor(ContextCompat.getColor(cxt, R.color.colorAccent))
         toast.show()
+    }
+
+    fun getUrl(cxt: Context): String {
+        val preferences = PreferenceManager.getDefaultSharedPreferences(cxt)
+        val url = preferences.getString("Url", "")
+        return url
+    }
+
+    fun getAuthKey(cxt: Context): String{
+        val preferences = PreferenceManager.getDefaultSharedPreferences(cxt)
+        val auth = preferences.getString("Autorization", "")
+        return auth
+    }
+
+    fun networkActive(context: Context, tvBolt: TextView) {
+        val iconFont = FontManager.GetTypeface(context, FontManager.FONTAWESOME_SOLID)
+        FontManager.MarkAsIconContainer(tvBolt, iconFont)
+        tvBolt.animate().alpha(1.0f).setDuration(100)
+                .setListener(object : AnimatorListenerAdapter() {
+                    override fun onAnimationEnd(animation: Animator) {
+                        tvBolt.animate().alpha(0.0f).setDuration(100).startDelay = 100
+                    }
+                })
     }
 }

@@ -12,27 +12,26 @@
         android:id="@+id/tvBolt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_marginEnd="10dp"
+        android:layout_toStartOf="@id/tvOnline"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="5dp"
         android:alpha="0"
-        android:padding="10sp"
         android:text="@string/fa_bolt"
         android:textAlignment="center"
         android:textColor="@color/colorYellow"
-        android:textSize="16sp" />
+        android:textSize="18sp" />
 
     <TextView
         android:id="@+id/tvOnline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
-        android:alpha="0"
-        android:padding="10sp"
         android:text="@string/fa_circle"
         android:textAlignment="center"
         android:textColor="@color/colorRed"
-        android:textSize="16sp" />
+        android:textSize="18sp" />
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/llPackNr"
@@ -190,12 +189,28 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/tvResult"
+        android:id="@+id/tvIcon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/llExpiration"
+        android:layout_marginTop="50dp"
+        android:layout_marginStart="25dp"
+        android:paddingStart="5dp"
+        android:paddingLeft="5dp"
+        android:paddingEnd="5dp"
+        android:paddingRight="5dp"
+        android:text="@string/fa_check"
+        android:textColor="@color/colorLightGreen"
+        android:textSize="40sp" />
+
+    <TextView
+        android:id="@+id/tvResult"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/tvIcon"
+        android:layout_below="@id/llExpiration"
+        android:layout_alignBaseline="@+id/tvIcon"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
         android:paddingStart="5dp"
         android:paddingLeft="5dp"
         android:paddingEnd="5dp"

@@ -1,12 +1,10 @@
-package nl.whitedove.washetdroogofniet
-
-import nl.whitedove.medicijnenscanner.StateType
-import org.joda.time.DateTime
+package nl.whitedove.medicijnenscanner
 
 class Pack {
-    var Packnr: String=""
-    var ProductCode: String=""
-    var BatchId: String=""
-    var Expiration: String=""
-    var Result: String = ""
+    var packnr: String=""
+    var productCode: String=""
+    var batchId: String=""
+    var expiration: String=""
+    var result: String = ""
+    var ok: Boolean = false
 }
