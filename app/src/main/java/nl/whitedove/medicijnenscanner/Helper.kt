@@ -17,7 +17,6 @@ internal object Helper {
     var dFormat = DateTimeFormat.forPattern("dd-MM-yyyy").withLocale(Locale.getDefault())!!
     var dmFormat = DateTimeFormat.forPattern("dd-MM").withLocale(Locale.getDefault())!!
     var dtFormat = DateTimeFormat.forPattern("dd-MM-yyyy HH:mm").withLocale(Locale.getDefault())!!
-    var scanResult = "Geen scanresultaat"
 
     const val DEBUG = false
 
@@ -76,10 +75,10 @@ internal object Helper {
     fun networkActive(context: Context, tvBolt: TextView) {
         val iconFont = FontManager.GetTypeface(context, FontManager.FONTAWESOME_SOLID)
         FontManager.MarkAsIconContainer(tvBolt, iconFont)
-        tvBolt.animate().alpha(1.0f).setDuration(100)
+        tvBolt.animate().alpha(1.0f).setDuration(50)
                 .setListener(object : AnimatorListenerAdapter() {
                     override fun onAnimationEnd(animation: Animator) {
-                        tvBolt.animate().alpha(0.0f).setDuration(100).startDelay = 100
+                        tvBolt.animate().alpha(0.0f).setDuration(100).startDelay = 50
                     }
                 })
     }

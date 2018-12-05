@@ -1,17 +1,17 @@
 package nl.whitedove.medicijnenscanner
 
 import android.Manifest
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.app.ActivityCompat
+import android.support.v7.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import com.google.zxing.BarcodeFormat
 import com.google.zxing.Result
 import me.dm7.barcodescanner.zxing.ZXingScannerView
-import android.content.Intent
 
 
 class ScanActivity : AppCompatActivity(), ZXingScannerView.ResultHandler {
@@ -41,7 +41,8 @@ class ScanActivity : AppCompatActivity(), ZXingScannerView.ResultHandler {
 
     override fun handleResult(p0: Result?) {
         if (p0 != null) {
-            backtoMain(p0.text)
+            NmvsHelper.splitPackdata(p0.text)
+            backtoMain()
         }
     }
 
@@ -50,8 +51,10 @@ class ScanActivity : AppCompatActivity(), ZXingScannerView.ResultHandler {
         if (requestCode == MY_CAMERA_REQUEST_CODE) {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED)
                 openCamera()
-            else if (grantResults[0] == PackageManager.PERMISSION_DENIED)
-                backtoMain(getString(R.string.nopermission))
+            else if (grantResults[0] == PackageManager.PERMISSION_DENIED) {
+                NmvsHelper.mPack = Pack(getString(R.string.nopermission))
+                backtoMain()
+            }
         }
     }
 
@@ -67,18 +70,17 @@ class ScanActivity : AppCompatActivity(), ZXingScannerView.ResultHandler {
         } else super.onOptionsItemSelected(item)
     }
 
-    private fun backtoMain(result: String) {
-        Helper.scanResult = result
+    private fun backtoMain() {
         val intent = Intent(this, MainActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
         this.startActivity(intent)
     }
 
     private fun openCamera() {
+        NmvsHelper.mPack = Pack(getString(R.string.geenscan))
         val qrCodeScanner = findViewById<ZXingScannerView>(R.id.qrCodeScanner)
         qrCodeScanner.startCamera()
         qrCodeScanner.setResultHandler(this)
-        Helper.scanResult =getString(R.string.geenscan)
     }
 
     private fun initScanner() {
