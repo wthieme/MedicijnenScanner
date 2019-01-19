@@ -21,15 +21,15 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        toonNmvsState(NmvsState())
         initFab()
-        toondataBackground()
         toonResult()
+        getNmvsdataBackground()
     }
 
     override fun onResume() {
         super.onResume()
         toonResult()
+        getNmvsdataBackground()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -50,6 +50,8 @@ class MainActivity : AppCompatActivity() {
     private fun initFab() {
         val fabscan = findViewById<FloatingActionButton>(R.id.fabScan)
         fabscan.setOnClickListener({ openScanner() })
+        val fabVerify = findViewById<FloatingActionButton>(R.id.fabVerify)
+        fabVerify.setOnClickListener({ getNmvsdataBackground() })
     }
 
     private fun openScanner() {
@@ -58,13 +60,12 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-    private fun toondataBackground() {
+    private fun getNmvsdataBackground() {
         networkActive()
-        val cxt = applicationContext
-        if (!Helper.testInternet(cxt)) {
+        val context = applicationContext
+        if (!Helper.testInternet(context)) {
             return
         }
-        val context = applicationContext
 
         AsyncGetNmvsState(this).execute(context)
         val pack = NmvsHelper.mPack

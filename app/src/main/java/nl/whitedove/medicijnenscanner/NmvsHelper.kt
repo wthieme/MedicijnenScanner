@@ -127,7 +127,29 @@ object NmvsHelper {
                     pack.expiration = s.substring(18, 24)
                     pack.batchId = s.substring(26)
                 }
+                if (s.length > 26 && s.substring(16, 18) == "21") {
+                    pack.productCode = s.substring(2, 16)
+                    pack.packnr = s.substring(18)
+                }
             }
+            if (first2 == "17") {
+                // Batch exp
+                if (s.length > 10 && s.substring(8, 10) == "10") {
+                    pack.expiration = s.substring(2, 8)
+                    pack.batchId = s.substring(10)
+                }
+                if (s.length == 8) {
+                    pack.expiration = s.substring(2)
+                }
+            }
+
+            if (first2 == "10") {
+                // Batch exp
+                if (s.length > 4) {
+                    pack.batchId = s.substring(2)
+                }
+            }
+
             if (first2 == "21") {
                 if (s.length > 2) {
                     // Packnr

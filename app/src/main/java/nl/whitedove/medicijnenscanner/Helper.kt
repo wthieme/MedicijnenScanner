@@ -8,15 +8,8 @@ import android.preference.PreferenceManager
 import android.support.v4.content.ContextCompat
 import android.widget.TextView
 import android.widget.Toast
-import org.joda.time.DateTime
-import org.joda.time.format.DateTimeFormat
-import java.util.*
 
 internal object Helper {
-
-    var dFormat = DateTimeFormat.forPattern("dd-MM-yyyy").withLocale(Locale.getDefault())!!
-    var dmFormat = DateTimeFormat.forPattern("dd-MM").withLocale(Locale.getDefault())!!
-    var dtFormat = DateTimeFormat.forPattern("dd-MM-yyyy HH:mm").withLocale(Locale.getDefault())!!
 
     const val DEBUG = false
 
@@ -43,11 +36,6 @@ internal object Helper {
             false
         }
 
-    }
-
-    fun getGuid(): String {
-        val guid = UUID.randomUUID().toString()
-        return guid
     }
 
     fun showMessage(cxt: Context, melding: String) {
